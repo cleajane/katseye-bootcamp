@@ -1,42 +1,59 @@
-![](../../workflows/gds/badge.svg) ![](../../workflows/docs/badge.svg) ![](../../workflows/test/badge.svg) ![](../../workflows/fpga/badge.svg)
+# KATSEYE - Kawaii Glyph Rain
 
-# Tiny Tapeout Verilog Project Template
+A VGA demo for [Tiny Tapeout](https://tinytapeout.com) built with the IHP shuttle template. Columns of kawaii symbols rain down the screen, and the message **"KATSEYE RULES"** is revealed in the center, one letter at a time.
 
-- [Read the documentation for project](docs/info.md)
+Built in [VGA Playground](https://vga-playground.com) and hardened into an ASIC with Tiny Tapeout.
 
-## What is Tiny Tapeout?
+## What it does
 
-Tiny Tapeout is an educational project that aims to make it easier and cheaper than ever to get your digital and analog designs manufactured on a real chip.
+- Falling 8x8 pixel glyphs: hearts, stars, sparkles, flowers, cats, music notes, smileys and moons
+- Columns fall at two different speeds, with a bright white head and a fading trail
+- After a short delay, "KATSEYE RULES" appears in the center of the screen
+- Each letter flashes white, then settles into a shimmering pastel color
+- A framed plate with a color-cycling border sits behind the text
+- Four pastel palettes: sakura pink, mint soda, lavender dream and peach cream
+- 640x480 VGA output at 25.175 MHz with 6-bit color (2 bits per channel)
 
-To learn more and get started, visit https://tinytapeout.com.
+## Pinout
 
-## Set up your Verilog project
+| Pin | Function |
+|-----|----------|
+| `ui[1:0]` | Palette select (00 sakura pink, 01 mint soda, 10 lavender dream, 11 peach cream) |
+| `ui[7:6]` | VGA mode |
+| `uo[0]` | R1 |
+| `uo[1]` | G1 |
+| `uo[2]` | B1 |
+| `uo[3]` | VSYNC |
+| `uo[4]` | R0 |
+| `uo[5]` | G0 |
+| `uo[6]` | B0 |
+| `uo[7]` | HSYNC |
 
-1. Add your Verilog files to the `src` folder.
-2. Edit the [info.yaml](info.yaml) and update information about your project, paying special attention to the `source_files` and `top_module` properties. If you are upgrading an existing Tiny Tapeout project, check out our [online info.yaml migration tool](https://tinytapeout.github.io/tt-yaml-upgrade-tool/).
-3. Edit [docs/info.md](docs/info.md) and add a description of your project.
-4. Adapt the testbench to your design. See [test/README.md](test/README.md) for more information.
+This is the standard TinyVGA PMOD layout.
 
-The GitHub action will automatically build the ASIC files using [LibreLane](https://www.zerotoasiccourse.com/terminology/librelane/).
+## Hardware needed
 
-## Enable GitHub actions to build the results page
+- Tiny Tapeout demo board
+- TinyVGA PMOD
+- VGA monitor
 
-- [Enabling GitHub Pages](https://tinytapeout.com/faq/#my-github-action-is-failing-on-the-pages-part)
+## Source code
 
-## Resources
+- [tt_um_vga_glyph_mode.v](src/tt_um_vga_glyph_mode.v) (top module `tt_um_vga_glyph_mode`)
+- [hvsync_generator.v](src/hvsync_generator.v) (VGA timing generator)
 
-- [FAQ](https://tinytapeout.com/faq/)
-- [Digital design lessons](https://tinytapeout.com/digital_design/)
-- [Learn how semiconductors work](https://tinytapeout.com/siliwiz/)
-- [Join the community](https://tinytapeout.com/discord)
-- [Build your design locally](https://www.tinytapeout.com/guides/local-hardening/)
+Direct link: https://github.com/cleajane/katseye-bootcamp/blob/main/src/tt_um_vga_glyph_mode.v
 
-## What next?
+More detail on how the design works is in [docs/info.md](docs/info.md).
 
-- [Submit your design to the next shuttle](https://app.tinytapeout.com/).
-- Edit [this README](README.md) and explain your design, how it works, and how to test it.
-- Share your project on your social network of choice:
-  - LinkedIn [#tinytapeout](https://www.linkedin.com/search/results/content/?keywords=%23tinytapeout) [@TinyTapeout](https://www.linkedin.com/company/100708654/)
-  - Mastodon [#tinytapeout](https://chaos.social/tags/tinytapeout) [@matthewvenn](https://chaos.social/@matthewvenn)
-  - X (formerly Twitter) [#tinytapeout](https://twitter.com/hashtag/tinytapeout) [@tinytapeout](https://twitter.com/tinytapeout)
-  - Bluesky [@tinytapeout.com](https://bsky.app/profile/tinytapeout.com)
+## Author
+
+CLEA
+
+## License
+
+Apache-2.0 (see the `LICENSE` file).
+
+## About Tiny Tapeout
+
+Tiny Tapeout is an educational project that makes it easier and cheaper than ever to get your digital and analog designs manufactured on a real chip. Learn more at https://tinytapeout.com.
