@@ -42,7 +42,7 @@ This is the standard TinyVGA PMOD layout.
 - [tt_um_vga_glyph_mode.v](src/tt_um_vga_glyph_mode.v) (top module `tt_um_vga_glyph_mode`)
 - [hvsync_generator.v](src/hvsync_generator.v) (VGA timing generator)
 
-Direct link: https://github.com/cleajane/katseye-bootcamp/blob/main/src/tt_um_vga_glyph_mode.v
+Direct link: https://fpga.vga-playground.pages.dev/?repo=https://github.com/cleajane/katseye-project
 
 More detail on how the design works is in [docs/info.md](docs/info.md).
 
